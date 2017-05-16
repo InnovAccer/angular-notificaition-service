@@ -6,7 +6,86 @@
   </head>
 
   <body>
-    <div ng-controller="demoCtrl"></div>
+    <div ng-controller="demoCtrl">
+      <div id="notification-wrapper"></div>
+      <div class="callout large">
+        <div class="row column text-center">
+          <h1>Notificaion Service</h1>
+          <p class="lead">A simple notification service made in Angular JS.</p>
+          <a href="#" class="button large">Find it on Github</a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="columns large-12">
+          <h4>Simple Notification</h4>
+        </div>
+        <div class="columns large-6 end">
+          <button class="button neutral" ng-click="simpleNotification('neutral')">
+            Neutral Notification
+          </button>
+          <button class="button alert" ng-click="simpleNotification('alert')">
+            Alert Notification
+          </button>
+          <button class="button success" ng-click="simpleNotification('success')">
+            Success Notification
+          </button>
+          <button class="button info" ng-click="simpleNotification('info')">
+            Info Notification
+          </button>
+          <button class="button warning" ng-click="simpleNotification('warning')">
+            Warning Notification
+          </button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="columns large-12">
+          <h4>Notification as a Confirm Box with Two Buttons</h4>
+        </div>
+        <div class="columns large-6 end">
+          <button class="button neutral" ng-click="confirmNotification('neutral')">
+            Neutral Notification
+          </button>
+          <button class="button alert" ng-click="confirmNotification('alert')">
+            Alert Notification
+          </button>
+          <button class="button success" ng-click="confirmNotification('success')">
+            Success Notification
+          </button>
+          <button class="button info" ng-click="confirmNotification('info')">
+            Info Notification
+          </button>
+          <button class="button warning" ng-click="confirmNotification('warning')">
+            Warning Notification
+          </button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="columns large-12">
+          <h4>Notification as a Confirm Box with Single Button</h4>
+        </div>
+        <div class="columns large-6 end">
+          <button class="button neutral" ng-click="confirmNotificationSingle('neutral')">
+            Neutral Notification
+          </button>
+          <button class="button alert" ng-click="confirmNotificationSingle('alert')">
+            Alert Notification
+          </button>
+          <button class="button success" ng-click="confirmNotificationSingle('success')">
+            Success Notification
+          </button>
+          <button class="button info" ng-click="confirmNotificationSingle('info')">
+            Info Notification
+          </button>
+          <button class="button warning" ng-click="confirmNotificationSingle('warning')">
+            Warning Notification
+          </button>
+        </div>
+      </div>
+
+    </div>
   </body>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/js/foundation.min.js" integrity="sha256-Nd2xznOkrE9HkrAMi4xWy/hXkQraXioBg9iYsBrcFrs=" crossorigin="anonymous"></script>
@@ -16,11 +95,50 @@
 
     var app = angular.module('demoApp', ['notification']);
 
-    app.controller('demoCtrl', function (Notification) {
-      Notification.alert({
-        title: 'Title Here',
-        message: 'message'
-      })
+    app.controller('demoCtrl', function ($scope, Notification) {
+
+      var buttonOne = function (uuid) {
+        Notification.close(uuid);
+        alert('callback for button 1')
+      };
+
+      var buttonTwo = function (uuid) {
+        Notification.close(uuid);
+        alert('callback for button 2');
+      };
+
+
+      $scope.simpleNotification = function (type) {
+        Notification.alert({
+          title: 'Title Here',
+          message: 'lorem ipsum dolor sit amet',
+          notificationClass: type,
+          delay: 2000
+        });
+      };
+
+      $scope.confirmNotification = function (type) {
+        Notification.alert({
+          title: 'Hello',
+          message: 'Desktop notifications not available in your browser. Try Chromium.',
+          buttonOne: buttonOne,
+          buttonOneText: 'Button 1',
+          buttonTwo: buttonTwo,
+          buttonTwoText: 'Button 2',
+          notificationClass: type,
+          delay: 2000
+        });
+      };
+
+      $scope.confirmNotificationSingle = function (type) {
+        Notification.alert({
+          title: 'Hello',
+          message: 'Desktop notifications not available in your browser. Try Chromium.',
+          buttonOne: buttonOne,
+          buttonOneText: 'Button 1',
+          notificationClass: type
+        });
+      };
     });
   </script>
 </html>

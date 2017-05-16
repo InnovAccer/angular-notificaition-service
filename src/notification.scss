@@ -5,13 +5,63 @@ $white: #FDFCF9;
 $blue: #0490EF;
 $neutral: #2D3142;
 $font-semibold: 600;
+$button-function-factor: -10%;
+
+#notification-wrapper {
+  width: 30%;
+  position: fixed;
+  right: 10px;
+  top:0px;
+  z-index: 999;
+}
 
 .notification {
-  position: fixed;
-  text-align: center;
-  width: 30%;
-  top: 10px;
-  right: 0px;
+  transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  border-radius: 3px;
+  overflow: hidden;
+  opacity: 0.99;
+  // box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+  p, h6 {
+    line-height: 1.2;
+  }
+  .button-group {
+    margin-bottom: 0px;
+    .button {
+      margin-right: 0px !important;
+    }
+    a:nth-child(1) {
+      width: 50% !important;
+      border-left: 0 !important;
+      border-right: 0 !important;
+      border-radius: 0 !important;
+    }
+    a:nth-child(2) {
+      width: 50% !important;
+      border-right: 0 !important;
+      border-radius: 0 !important;
+    }
+    a {
+      border-bottom: 0;
+    }
+  }
+  .button-group.expanded .button:first-child:last-child {
+     width: 100% !important;
+   }
+
+  .no-padding {
+    padding: 0px !important;
+  }
+
+  .no-margin {
+    margin: 0px !important;
+  }
+
+  .no-border {
+    border: 0px !important;
+  }
 
   .close-button {
       position: absolute;
@@ -24,27 +74,33 @@ $font-semibold: 600;
   }
 
   .neutral {
-      background-color: $neutral;
+      background: $neutral;
   }
   .alert {
-      background-color: lighten($red, 5%);
+      background: lighten($red, 5%) !important;
   }
   .info {
-      background-color: lighten($blue, 5%);
+      background: lighten($blue, 5%);
   }
   .warning {
-      background-color: lighten($yellow, 5%);
+      background: lighten($yellow, 5%) !important;
   }
   .success {
-      background-color: lighten($green, 5%);
+      background: lighten($green, 5%) !important;
   }
   .neutral, .alert, .info, .warning, .success {
       padding: 10px;
       color: $white;
+      h6 {
+        color: $white !important;
+        font-size: 14px;
+      }
       a, p {
-          color: $white;
+          color: $white !important;
           font-weight: $font-semibold;
-          margin: 0 2px
+          margin: 0 2px;
+          font-size: 12px;
+
       }
       a {
         border-bottom: 1px solid $white;
@@ -52,5 +108,94 @@ $font-semibold: 600;
       .close-button {
           color: $white;
       }
+  }
+}
+
+
+.button {
+
+    &.success {
+        color: $white !important;
+        background: lighten($green, 5%) !important;
+        font-weight: $font-semibold;
+        $border-color: scale-color($green, $lightness: $button-function-factor);
+        border-color: $border-color;
+        &:focus,
+        &:hover {
+            background: scale-color($green, $lightness: $button-function-factor) !important;
+            color: $white;
+            border-color: scale-color($border-color, $lightness: $button-function-factor);
+        }
+    }
+    &.info {
+        color: $white !important;
+        background-color: lighten($blue, 5%);
+        font-weight: $font-semibold;
+        $border-color: scale-color($blue, $lightness: $button-function-factor);
+        border-color: $border-color;
+        &:focus,
+        &:hover {
+            background: scale-color($blue, $lightness: $button-function-factor) !important;
+            color: $white;
+            border-color: scale-color($border-color, $lightness: $button-function-factor);
+        }
+    }
+    &.warning {
+        color: $white !important;
+        background-color: lighten($yellow, 5%);
+        font-weight: $font-semibold;
+        $border-color: scale-color($yellow, $lightness: $button-function-factor);
+        border-color: $border-color;
+        &:focus,
+        &:hover {
+            background: scale-color($yellow, $lightness: $button-function-factor);
+            color: $white;
+            border-color: scale-color($border-color, $lightness: $button-function-factor);
+        }
+    }
+    &.neutral {
+        color: $white !important;
+        background-color: $neutral;
+        font-weight: $font-semibold;
+        $border-color: scale-color($neutral, $lightness: $button-function-factor);
+        border-color: $border-color;
+        &:focus,
+        &:hover {
+            background: scale-color($neutral, $lightness: $button-function-factor);
+            color: $white;
+            border-color: scale-color($border-color, $lightness: $button-function-factor);
+        }
+    }
+    &.alert {
+        color: $white !important;
+        font-weight: $font-semibold;
+        background-color: lighten($red, 5%) !important;
+        $border-color: scale-color($red, $lightness: $button-function-factor);
+        border-color: $border-color;
+        &:focus,
+        &:hover {
+            color: $white;
+            background: scale-color($red, $lightness: $button-function-factor) !important;
+            border-color: scale-color($border-color, $lightness: $button-function-factor);
+        }
+    }
+}
+
+/* ngIf animation */
+.notification-animate {
+animation: notification-insert 0.3s ease-in;
+  transition:all cubic-bezier(0.29, 0.08, 0, 1.18) 0.1s;
+
+}
+
+@keyframes notification-insert {
+  from {
+    -webkit-transform:translateY(-100%);
+            transform:translateY(-100%);
+
+  }
+  to {
+    -webkit-transform:translateY(0);
+            transform:translateY(0);
   }
 }

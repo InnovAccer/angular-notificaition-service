@@ -6,11 +6,9 @@ app.provider('Notification', function () {
     delay: undefined,
     templateUrl: 'notification.html',
     onClose: undefined,
-    targetState: undefined,
-    onSuccess: undefined,
     closeOnClick: false,
     notificationClass: 'neutral',
-    container: 'body',
+    container: '#notification-wrapper',
     buttonOneText: 'Button One',
     buttonTwoText: 'Button Two'
   };
@@ -69,7 +67,6 @@ app.provider('Notification', function () {
         scope.title = $sce.trustAsHtml(args.title);
         scope.delay = args.delay;
         scope.onClose = args.onClose;
-        scope.targetState = args.targetState;
         scope.notificationClass = args.notificationClass;
         scope.buttonOne = args.buttonOne;
         scope.buttonTwo = args.buttonTwo;
@@ -117,7 +114,7 @@ app.provider('Notification', function () {
         deferred.resolve(scope);
       }).catch(function (err) {
         throw new
-        Error('Template (' + args.template + ') could not be loaded. ' + err);
+        Error('Template (' + args.template + ')  not loaded. ' + err);
       });
       return deferred.promise;
     };

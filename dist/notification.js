@@ -13,11 +13,9 @@ app.provider('Notification', function () {
     delay: undefined,
     templateUrl: 'notification.html',
     onClose: undefined,
-    targetState: undefined,
-    onSuccess: undefined,
     closeOnClick: false,
     notificationClass: 'neutral',
-    container: 'body',
+    container: '#notification-wrapper',
     buttonOneText: 'Button One',
     buttonTwoText: 'Button Two'
   };
@@ -76,7 +74,6 @@ app.provider('Notification', function () {
         scope.title = $sce.trustAsHtml(args.title);
         scope.delay = args.delay;
         scope.onClose = args.onClose;
-        scope.targetState = args.targetState;
         scope.notificationClass = args.notificationClass;
         scope.buttonOne = args.buttonOne;
         scope.buttonTwo = args.buttonTwo;
@@ -148,4 +145,4 @@ app.provider('Notification', function () {
   }];
 });
 
-angular.module("notification").run(["$templateCache", function($templateCache) {$templateCache.put("notification.html","<div class=\"row notification alert-service\" id=\"{{uuid}}\"><div class=\"columns large-12 no-padding\"><div class=\"callout text-left no-border no-margin\" ng-class=\"notificationClass\"><h6><b ng-bind-html=\"title\"></b></h6><p ng-bind-html=\"message\" class=\"no-margin\"></p><button class=\"close-button\" type=\"button\" ng-click=\"close()\" ng-if=\"!buttonOne && !buttonTwo\"><span aria-hidden=\"true\">&times;</span></button></div><div class=\"columns large-12 no-padding\"><div class=\"button-group expanded small\"><a ng-if=\"buttonOne\" ng-class=\"notificationClass\" class=\"button\" ng-click=\"buttonOne(uuid)\">{{buttonOneText}}</a> <a ng-if=\"buttonTwo\" ng-class=\"notificationClass\" class=\"button\" ng-click=\"buttonTwo(uuid)\">{{buttonTwoText}}</a></div></div></div></div>");}]);
+angular.module("notification").run(["$templateCache", function($templateCache) {$templateCache.put("notification.html","<div class=\"row notification\" id=\"{{uuid}}\"><div class=\"columns large-12 no-padding\"><div class=\"callout text-left no-border no-margin\" ng-class=\"notificationClass\"><h6><b ng-bind-html=\"title\"></b></h6><p ng-bind-html=\"message\" class=\"no-margin\"></p><button class=\"close-button\" type=\"button\" ng-click=\"close()\" ng-if=\"!buttonOne && !buttonTwo\"><span aria-hidden=\"true\">&times;</span></button></div><div class=\"columns large-12 no-padding\"><div class=\"button-group expanded small\"><a ng-if=\"buttonOne\" ng-class=\"notificationClass\" class=\"button\" ng-click=\"buttonOne(uuid)\">{{buttonOneText}}</a> <a ng-if=\"buttonTwo\" ng-class=\"notificationClass\" class=\"button\" ng-click=\"buttonTwo(uuid)\">{{buttonTwoText}}</a></div></div></div></div>");}]);

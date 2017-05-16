@@ -12,12 +12,46 @@
  * @link 
  * @license MIT
  */
-.notification {
-  position: fixed;
-  text-align: center;
+#notification-wrapper {
   width: 30%;
-  top: 10px;
-  right: 0px; }
+  position: fixed;
+  right: 10px;
+  top: 0px;
+  z-index: 999; }
+
+.notification {
+  transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  border-radius: 3px;
+  overflow: hidden;
+  opacity: 0.99; }
+  .notification p, .notification h6 {
+    line-height: 1.2; }
+  .notification .button-group {
+    margin-bottom: 0px; }
+    .notification .button-group .button {
+      margin-right: 0px !important; }
+    .notification .button-group a:nth-child(1) {
+      width: 50% !important;
+      border-left: 0 !important;
+      border-right: 0 !important;
+      border-radius: 0 !important; }
+    .notification .button-group a:nth-child(2) {
+      width: 50% !important;
+      border-right: 0 !important;
+      border-radius: 0 !important; }
+    .notification .button-group a {
+      border-bottom: 0; }
+  .notification .button-group.expanded .button:first-child:last-child {
+    width: 100% !important; }
+  .notification .no-padding {
+    padding: 0px !important; }
+  .notification .no-margin {
+    margin: 0px !important; }
+  .notification .no-border {
+    border: 0px !important; }
   .notification .close-button {
     position: absolute;
     color: #2D3142;
@@ -27,23 +61,90 @@
     line-height: 1;
     cursor: pointer; }
   .notification .neutral {
-    background-color: #2D3142; }
+    background: #2D3142; }
   .notification .alert {
-    background-color: #dd4c4c; }
+    background: #dd4c4c !important; }
   .notification .info {
-    background-color: #119dfb; }
+    background: #119dfb; }
   .notification .warning {
-    background-color: #feb726; }
+    background: #feb726 !important; }
   .notification .success {
-    background-color: #32bd5d; }
+    background: #32bd5d !important; }
   .notification .neutral, .notification .alert, .notification .info, .notification .warning, .notification .success {
     padding: 10px;
     color: #FDFCF9; }
+    .notification .neutral h6, .notification .alert h6, .notification .info h6, .notification .warning h6, .notification .success h6 {
+      color: #FDFCF9 !important;
+      font-size: 14px; }
     .notification .neutral a, .notification .neutral p, .notification .alert a, .notification .alert p, .notification .info a, .notification .info p, .notification .warning a, .notification .warning p, .notification .success a, .notification .success p {
-      color: #FDFCF9;
+      color: #FDFCF9 !important;
       font-weight: 600;
-      margin: 0 2px; }
+      margin: 0 2px;
+      font-size: 12px; }
     .notification .neutral a, .notification .alert a, .notification .info a, .notification .warning a, .notification .success a {
       border-bottom: 1px solid #FDFCF9; }
     .notification .neutral .close-button, .notification .alert .close-button, .notification .info .close-button, .notification .warning .close-button, .notification .success .close-button {
       color: #FDFCF9; }
+
+.button.success {
+  color: #FDFCF9 !important;
+  background: #32bd5d !important;
+  font-weight: 600;
+  border-color: #29984b; }
+  .button.success:focus, .button.success:hover {
+    background: #29984b !important;
+    color: #FDFCF9;
+    border-color: #248943; }
+
+.button.info {
+  color: #FDFCF9 !important;
+  background-color: #119dfb;
+  font-weight: 600;
+  border-color: #0482d7; }
+  .button.info:focus, .button.info:hover {
+    background: #0482d7 !important;
+    color: #FDFCF9;
+    border-color: #0375c2; }
+
+.button.warning {
+  color: #FDFCF9 !important;
+  background-color: #feb726;
+  font-weight: 600;
+  border-color: #efa101; }
+  .button.warning:focus, .button.warning:hover {
+    background: #efa101;
+    color: #FDFCF9;
+    border-color: #d79101; }
+
+.button.neutral {
+  color: #FDFCF9 !important;
+  background-color: #2D3142;
+  font-weight: 600;
+  border-color: #292c3b; }
+  .button.neutral:focus, .button.neutral:hover {
+    background: #292c3b;
+    color: #FDFCF9;
+    border-color: #242835; }
+
+.button.alert {
+  color: #FDFCF9 !important;
+  font-weight: 600;
+  background-color: #dd4c4c !important;
+  border-color: #ce2727; }
+  .button.alert:focus, .button.alert:hover {
+    color: #FDFCF9;
+    background: #ce2727 !important;
+    border-color: #b92323; }
+
+/* ngIf animation */
+.notification-animate {
+  animation: notification-insert 0.3s ease-in;
+  transition: all cubic-bezier(0.29, 0.08, 0, 1.18) 0.1s; }
+
+@keyframes notification-insert {
+  from {
+    -webkit-transform: translateY(-100%);
+    transform: translateY(-100%); }
+  to {
+    -webkit-transform: translateY(0);
+    transform: translateY(0); } }
