@@ -1,7 +1,5 @@
 var gulp = require('gulp');
-var less = require('gulp-less');
-var minifyCSS = require('gulp-minify-css');
-var csscomb = require('gulp-csscomb');
+var sass = require('gulp-sass');
 var ngAnnotate = require('gulp-ng-annotate');
 var uglify = require('gulp-uglify');
 var eslint = require('gulp-eslint');
@@ -12,7 +10,7 @@ var minifyHtml = require('gulp-minify-html');
 var concat = require('gulp-concat');
 var addsrc = require('gulp-add-src');
 var order = require('gulp-order');
-var packageName = 'hello';
+var packageName = 'notification';
 // var protractor = require('gulp-protractor').protractor;
 
 var pkg = require('./package.json');
@@ -27,17 +25,13 @@ var banner = ['/**',
 
  // ==== Styles
 gulp.task('styles', function () {
-  gulp.src('src/build.less')
-     .pipe(less({
-       strictMath: true
-     }))
-     .pipe(csscomb())
+  gulp.src('src/*.scss')
      .pipe(header(banner, { pkg: pkg }))
      .pipe(rename({
        basename: packageName
      }))
      .pipe(gulp.dest('dist'))
-     .pipe(minifyCSS())
+     .pipe(sass().on('error', sass.logError))
      .pipe(rename({
        suffix: '.min'
      }))
@@ -70,8 +64,8 @@ gulp.task('service', function () {
    .pipe(addsrc('build/*.js'))
    .pipe(order([
      'src/*.js',
-     'build/*.templates.js'
-   ]))
+     'build/notification.templates.js'
+   ], { base: './' }))
    .pipe(concat([packageName, '.js'].join('')))
 
    .pipe(header(banner, { pkg: pkg }))

@@ -1,0 +1,49 @@
+/**
+ * Datashop Notification - Notificaion Service for Datashop.
+ * @author Ayush Sharma
+ * @version v0.0.1
+ * @link 
+ * @license MIT
+ */
+/**
+ * Datashop Notification - Notificaion Service for Datashop.
+ * @author Ayush Sharma
+ * @version v0.0.1
+ * @link 
+ * @license MIT
+ */
+.notification {
+  position: fixed;
+  text-align: center;
+  width: 30%;
+  top: 10px;
+  right: 0px; }
+  .notification .close-button {
+    position: absolute;
+    color: #2D3142;
+    right: 20px;
+    top: 10px;
+    font-size: 1.4em;
+    line-height: 1;
+    cursor: pointer; }
+  .notification .neutral {
+    background-color: #2D3142; }
+  .notification .alert {
+    background-color: #dd4c4c; }
+  .notification .info {
+    background-color: #119dfb; }
+  .notification .warning {
+    background-color: #feb726; }
+  .notification .success {
+    background-color: #32bd5d; }
+  .notification .neutral, .notification .alert, .notification .info, .notification .warning, .notification .success {
+    padding: 10px;
+    color: #FDFCF9; }
+    .notification .neutral a, .notification .neutral p, .notification .alert a, .notification .alert p, .notification .info a, .notification .info p, .notification .warning a, .notification .warning p, .notification .success a, .notification .success p {
+      color: #FDFCF9;
+      font-weight: 600;
+      margin: 0 2px; }
+    .notification .neutral a, .notification .alert a, .notification .info a, .notification .warning a, .notification .success a {
+      border-bottom: 1px solid #FDFCF9; }
+    .notification .neutral .close-button, .notification .alert .close-button, .notification .info .close-button, .notification .warning .close-button, .notification .success .close-button {
+      color: #FDFCF9; }

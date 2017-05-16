@@ -1,0 +1,56 @@
+$red: #D93737;
+$yellow: #FEAF0D;
+$green: #2DA953;
+$white: #FDFCF9;
+$blue: #0490EF;
+$neutral: #2D3142;
+$font-semibold: 600;
+
+.notification {
+  position: fixed;
+  text-align: center;
+  width: 30%;
+  top: 10px;
+  right: 0px;
+
+  .close-button {
+      position: absolute;
+      color: $neutral;
+      right: 20px;
+      top: 10px;
+      font-size: 1.4em;
+      line-height: 1;
+      cursor: pointer;
+  }
+
+  .neutral {
+      background-color: $neutral;
+  }
+  .alert {
+      background-color: lighten($red, 5%);
+  }
+  .info {
+      background-color: lighten($blue, 5%);
+  }
+  .warning {
+      background-color: lighten($yellow, 5%);
+  }
+  .success {
+      background-color: lighten($green, 5%);
+  }
+  .neutral, .alert, .info, .warning, .success {
+      padding: 10px;
+      color: $white;
+      a, p {
+          color: $white;
+          font-weight: $font-semibold;
+          margin: 0 2px
+      }
+      a {
+        border-bottom: 1px solid $white;
+      }
+      .close-button {
+          color: $white;
+      }
+  }
+}

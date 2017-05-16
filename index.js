@@ -3,5 +3,5 @@
  */
 
 // Change these lines when you are publishing a module
-require('./dist/hello.js');
-module.exports = 'hello';
+require('./dist/notification.js');
+module.exports = 'notification';
