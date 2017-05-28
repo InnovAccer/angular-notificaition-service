@@ -121,7 +121,7 @@ app.provider('Notification', function () {
         deferred.resolve(scope);
       }).catch(function (err) {
         throw new
-        Error('Template (' + args.template + ') could not be loaded. ' + err);
+        Error('Template (' + args.template + ')  not loaded. ' + err);
       });
       return deferred.promise;
     };
