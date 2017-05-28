@@ -6,9 +6,7 @@ describe('E2E: main page', function () {
 
   describe('Buttons exists', function () {
     it('should be 25', function () {
-      expect(element.all(by.css('button.button'))
-          .count())
-        .toBe(25);
+      expect(element.all(by.css('button.button')).count()).toBe(25);
     });
   });
 
