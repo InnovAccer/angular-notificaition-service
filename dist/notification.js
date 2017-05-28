@@ -7,7 +7,15 @@
  */
 var app = angular.module('notification', []);
 
+/**
+ * Notificaion provider.
+ *
+ * @return {object}  {notification}
+ */
 app.provider('Notification', function () {
+  /**
+   * Setting default configuration
+   */
   this.options = {
     message: 'This is default message',
     delay: undefined,
@@ -29,10 +37,14 @@ app.provider('Notification', function () {
 
   this.$get = ["$timeout", "$http", "$compile", "$templateCache", "$rootScope", "$sce", "$q", "$templateRequest", function ($timeout, $http, $compile, $templateCache,
     $rootScope, $sce, $q, $templateRequest) {
-    //
     var options = this.options;
     var messageElements = [];
 
+    /**
+     * UUID - generate random id
+     *
+     * @return {string}
+     */
     var uuid = function () {
       var s4 = function () {
         return Math.floor((1 + Math.random()) * 0x10000)
@@ -43,6 +55,12 @@ app.provider('Notification', function () {
         s4() + '-' + s4() + s4() + s4();
     };
 
+    /**
+     *  notification
+     *
+     * @param  {object} args
+     * @return {promise}
+     */
     var notification = function (args) {
       var deferred = $q.defer();
 
@@ -50,12 +68,14 @@ app.provider('Notification', function () {
         throw new Error('Args: Object require');
       }
 
+      /**
+       * checking, validating and setting values for notification type.
+       */
       args.scope = args.scope || $rootScope;
       args.template = args.templateUrl || options.templateUrl;
       args.delay = args.delay || options.delay;
       args.message = args.message || options.message;
       args.onClose = args.onClose || options.onClose;
-      // For Confirm Box
       args.buttonOne = args.buttonOne || options.buttonOne;
       args.buttonTwo = args.buttonTwo || options.buttonTwo;
       args.buttonOneText = args.buttonOneText || options.buttonOneText;
@@ -63,23 +83,27 @@ app.provider('Notification', function () {
       args.closeOnClick = (args.closeOnClick !== null && args.closeOnClick
          !== undefined) ? args.closeOnClick : options.closeOnClick;
       args.container = args.container || options.container;
-      args.notificationClass = args.notificationClass || options.notificationClass;
+      args.notificationClass =
+        args.notificationClass || options.notificationClass;
 
       $templateRequest(args.template).then(function (template) {
-        // Creating scope for the each notification template
         var scope = args.scope.$new();
         var templateElement = $compile(template)(scope);
 
+        /**
+         * Setting scope values.
+         */
         scope.message = $sce.trustAsHtml(args.message);
         scope.title = $sce.trustAsHtml(args.title);
         scope.delay = args.delay;
         scope.onClose = args.onClose;
         scope.notificationClass = args.notificationClass;
-        scope.buttonOne = args.buttonOne;
-        scope.buttonTwo = args.buttonTwo;
+        // scope.buttonOne = args.buttonOne;
+        // scope.buttonTwo = args.buttonTwo;
         scope.uuid = 'notifiy-' + uuid();
-        scope.buttonOneText = args.buttonOneText;
-        scope.buttonTwoText = args.buttonTwoText;
+        // scope.buttonOneText = args.buttonOneText;
+        // scope.buttonTwoText = args.buttonTwoText;
+
         /**
          * closeEvent
          */
@@ -92,7 +116,9 @@ app.provider('Notification', function () {
           scope.$destroy();
         };
 
-        // Close on click
+        /**
+         * Close on click feature.
+         */
         if (args.closeOnClick) {
           templateElement.bind('click', scope.close());
         }
@@ -102,12 +128,16 @@ app.provider('Notification', function () {
          */
         if (args.buttonOne) {
           scope.buttonOne = args.buttonOne;
+          scope.buttonOneText = args.buttonOneText;
         }
         if (args.buttonTwo) {
           scope.buttonTwo = args.buttonTwo;
+          scope.buttonTwoText = args.buttonTwoText;
         }
 
-        // Automatically hide the notification on the duration of delay.
+        /**
+         * Automatically hide the notification on the duration of delay.
+         */
         if (angular.isNumber(args.delay)) {
           $timeout(function () {
             scope.close();

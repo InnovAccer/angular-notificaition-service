@@ -1,46 +1,118 @@
-# `angular-module-boilerplate` — the simple scaffloding for a module
-This project is an application skeleton for a typical angular module. You can use it
-to quickly bootstrap your angular modules.
+### Angular Notificaion Service (Foundation 6)
 
-## Getting Started
+##### Usage:
 
-To get you started you can simply clone the `angular-module-boilerplate` repository and install the dependencies:
 
-### Prerequisites
+#### Config
+- **message** - string *required*
+- **title** - string *required*
+- **callback** - function callback method on notification close
+- **closeOnClick** - close on click. default: false
+- **buttonOne** - call back for Button One click.
+- **buttonOneText** - 'Button 1'
+- **buttonTwo** - call back for Button Two click
+- **buttonTwoText** - 'Button 2'
+- **Delay** - Time after which notification remove.
+- **Type** - neutral, alert, success, info and warning. default: neutral
 
-#### Clone `angular-module-boilerplate`
-
-Clone the `angular-module-boilerplate` repository using git:
-
+#### Available Methods:
+Neutral
 ```
-git clone https://github.com/ayusharma/angular-module-boilerplate.git
-cd angular-module-boilerplate
-```
-
-If you just want to start a new project without the `angular-module-boilerplate` commit history then you can do:
-
-```
-git clone --depth=1 https://github.com/ayusharma/angular-module-boilerplate.git <your-project-name>
-```
-
-The `depth=1` tells git to only pull down one commit worth of historical data.
-
-### Install Dependencies
-
-We have preconfigured `npm` to automatically run `bower` so we can simply do:
-
-```
-npm install
+Notification.alert({
+  title: 'Title Here',
+  message: 'message
+})
 ```
 
-Behind the scenes this will also call `bower install`. After that, you should find out that you have
-two new folders in your project.
+Success
+```
+Notification.alert({
+  title: 'Title Here',
+  message: 'message'
+})
+```
 
-* `node_modules` - contains the npm packages for the tools we need
-* `demo/bower_components` - contains the Angular framework files
+Info
+```
+Notification.alert({
+  title: 'Title Here',
+  message: 'message'
+})
+```
 
-###  Building Module
+Warning
+```
+Notification.alert({
+  title: 'Title Here',
+  message: 'message'
+})
+```
+Alert
+```
+Notification.alert({
+  title: 'Title Here',
+  message: 'message'
+})
+```
 
-```js
-  gulp build
+###### Use:
+
+```
+var app = angular.module('myApp', []);
+
+app.controller('myCtrl',  function(alertService) {
+  // calling alert service.
+  alertService.alert.neutral({
+    title: 'title here', // Required
+    message: 'message here' // Required
+    callback: someMethod // Optional
+  });
+})
+```
+
+###### Using Alert Service as Confirm Box
+
+```
+Notification.alert({
+  title: 'Hello',
+  message: 'Notification message',
+  buttonOne: buttonOne,
+  buttonOneText: 'Button 1',
+  buttonTwo: buttonTwo,
+  buttonTwoText: buttonTwoText
+});
+```
+
+###### Example
+```
+var buttonOne = function (uuid) {
+  Notification.close(uuid);
+  console.log('hello');
+};
+
+var buttonTwo = function (uuid) {
+  Notification.close(uuid);
+  console.log('close');
+};
+
+Notification.alert({
+  title: 'Hello',
+  message: 'Notification message',
+  buttonOne: buttonOne,
+  buttonOneText: 'Button 1'
+});
+
+Notification.alert({
+  title: 'Hello',
+  message: 'Notification message',
+  buttonTwo: buttonTwo,
+  buttonTwoText: buttonTwoText,
+  closeOnClick: true,
+  delay: 5000
+});
+
+alertService.alert.warning({
+  title: 'Hello',
+  message: 'Notification message'
+});
 ```

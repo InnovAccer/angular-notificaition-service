@@ -91,11 +91,11 @@ app.provider('Notification', function () {
         scope.delay = args.delay;
         scope.onClose = args.onClose;
         scope.notificationClass = args.notificationClass;
-        scope.buttonOne = args.buttonOne;
-        scope.buttonTwo = args.buttonTwo;
+        // scope.buttonOne = args.buttonOne;
+        // scope.buttonTwo = args.buttonTwo;
         scope.uuid = 'notifiy-' + uuid();
-        scope.buttonOneText = args.buttonOneText;
-        scope.buttonTwoText = args.buttonTwoText;
+        // scope.buttonOneText = args.buttonOneText;
+        // scope.buttonTwoText = args.buttonTwoText;
 
         /**
          * closeEvent
@@ -121,9 +121,11 @@ app.provider('Notification', function () {
          */
         if (args.buttonOne) {
           scope.buttonOne = args.buttonOne;
+          scope.buttonOneText = args.buttonOneText;
         }
         if (args.buttonTwo) {
           scope.buttonTwo = args.buttonTwo;
+          scope.buttonTwoText = args.buttonTwoText;
         }
 
         /**

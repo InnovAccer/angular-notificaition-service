@@ -11,7 +11,7 @@ var concat = require('gulp-concat');
 var addsrc = require('gulp-add-src');
 var order = require('gulp-order');
 var packageName = 'notification';
-// var protractor = require('gulp-protractor').protractor;
+var protractor = require('gulp-protractor').protractor;
 
 var pkg = require('./package.json');
 var banner = ['/**',
@@ -69,7 +69,6 @@ gulp.task('service', function () {
 
    .pipe(header(banner, { pkg: pkg }))
    .pipe(gulp.dest('dist'))
-
    .pipe(uglify())
    .pipe(rename({
      suffix: '.min'
@@ -79,17 +78,6 @@ gulp.task('service', function () {
    .pipe(gulp.dest('demo'));
 });
 
-// ======
-// gulp.task('e2eTest', function() {
-//    gulp.src(['./test/**/*_spec.js'])
-//        .pipe(protractor({
-//            configFile: "protractor_conf.js"
-//        }))
-//        .on('error', function(e) {throw e});
-// });
-//
-// gulp.task('tests', ['e2eTest']);
 gulp.task('build', ['templates', 'service', 'styles']);
-// gulp.task('deploy', ['build']);
 
-gulp.task('default', ['deploy'], function () {});
+gulp.task('default', ['build'], function () {});
