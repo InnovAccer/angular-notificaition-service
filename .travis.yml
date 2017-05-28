@@ -3,7 +3,7 @@ dist: trusty
 
 language: node_js
 node_js:
-  - '4.5'
+  - '4.4.3'
 
 install:
   - export DISPLAY=:99.0
@@ -15,7 +15,7 @@ install:
 
 before_script:
   - npm install
+  - ./node_modules/protractor/bin/webdriver-manager update
 
 script:
-  - npm run test-single-run
-  - (npm start > /dev/null &) && (npm run protractor)
+  - npm run test
