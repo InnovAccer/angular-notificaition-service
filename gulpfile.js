@@ -35,7 +35,6 @@ gulp.task('styles', function () {
      .pipe(rename({
        suffix: '.min'
      }))
-     .pipe(header(banner, { pkg: pkg }))
      .pipe(gulp.dest('dist'))
      .pipe(gulp.dest('demo'));
 });

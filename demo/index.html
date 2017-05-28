@@ -7,7 +7,9 @@
 
   <body>
     <div ng-controller="demoCtrl">
+      <!-- All the notifications comes in this div.  -->
       <div id="notification-wrapper"></div>
+
       <div class="callout large">
         <div class="row column text-center">
           <h1>Notificaion Service</h1>
@@ -85,6 +87,52 @@
         </div>
       </div>
 
+      <div class="row">
+        <div class="columns large-12">
+          <h4>Notification with custom delay 20s</h4>
+        </div>
+        <div class="columns large-6 end">
+          <button class="button neutral" ng-click="confirmNotificationSingleDelay('neutral')">
+            Neutral Notification with 20s
+          </button>
+          <button class="button alert" ng-click="confirmNotificationSingleDelay('alert')">
+            Alert Notification with 20s
+          </button>
+          <button class="button success" ng-click="confirmNotificationSingleDelay('success')">
+            Success Notification with 20s
+          </button>
+          <button class="button info" ng-click="confirmNotificationSingleDelay('info')">
+            Info Notification with 20s
+          </button>
+          <button class="button warning" ng-click="confirmNotificationSingleDelay('warning')">
+            Warning Notification with 20s
+          </button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="columns large-12">
+          <h4>Notification with HTML markup</h4>
+        </div>
+        <div class="columns large-6 end">
+          <button class="button neutral" ng-click="confirmNotificationSingleHTML('neutral')">
+            Neutral Notification with HTML markup.
+          </button>
+          <button class="button alert" ng-click="confirmNotificationSingleHTML('alert')">
+            Alert Notification with HTML markup.
+          </button>
+          <button class="button success" ng-click="confirmNotificationSingleHTML('success')">
+            Success Notification with HTML markup.
+          </button>
+          <button class="button info" ng-click="confirmNotificationSingleHTML('info')">
+            Info Notification with HTML markup.
+          </button>
+          <button class="button warning" ng-click="confirmNotificationSingleHTML('warning')">
+            Warning Notification with HTML markup.
+          </button>
+        </div>
+      </div>
+
     </div>
   </body>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -99,12 +147,12 @@
 
       var buttonOne = function (uuid) {
         Notification.close(uuid);
-        alert('callback for button 1')
+        console.log('callback for button 1')
       };
 
       var buttonTwo = function (uuid) {
         Notification.close(uuid);
-        alert('callback for button 2');
+        console.log('callback for button 2');
       };
 
 
@@ -136,7 +184,26 @@
           message: 'Desktop notifications not available in your browser. Try Chromium.',
           buttonOne: buttonOne,
           buttonOneText: 'Button 1',
-          notificationClass: type
+          notificationClass: type,
+          delay: 2000
+        });
+      };
+
+      $scope.confirmNotificationSingleDelay = function (type) {
+        Notification.alert({
+          title: 'Hello',
+          message: 'I\'ll disappear in 20 Seconds.',
+          notificationClass: type,
+          delay:20000
+        });
+      };
+
+      $scope.confirmNotificationSingleHTML = function (type) {
+        Notification.alert({
+          title: 'Hello',
+          message: 'I am with <i>italic</i> notification',
+          notificationClass: type,
+          delay:2000
         });
       };
     });

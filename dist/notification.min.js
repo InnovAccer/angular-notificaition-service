@@ -1,5 +1,5 @@
 /**
- * Datashop Notification - Notificaion Service for Datashop.
+ * notification-service - Notificaion Service for Datashop.
  * @author Ayush Sharma
  * @version v0.0.1
  * @link 
