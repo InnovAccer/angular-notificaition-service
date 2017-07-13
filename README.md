@@ -1,5 +1,5 @@
 ### Angular Notificaion Service (Foundation 6)
-[![Build Status](https://travis-ci.org/InnovAccer/angular-notificaition-service.svg?branch=master)](https://travis-ci.org/InnovAccer/angular-notificaition-service)
+[![Build Status](https://travis-ci.org/Innovaccer/angular-notificaition-service.svg?branch=master)](https://travis-ci.org/Innovaccer/angular-notificaition-service)
 
 ##### Usage:
 
