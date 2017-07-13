@@ -4,11 +4,11 @@ describe('E2E: main page', function () {
     browser.driver.get('http://localhost:8080/index.html');
   });
 
-  // describe('Buttons exists', function () {
-  //   it('should be 25', function () {
-  //     expect(element.all(by.css('button.button')).count()).toBe(25);
-  //   });
-  // });
+  describe('Buttons exists', function () {
+    it('should be 25', function () {
+      expect(element.all(by.css('button.button')).count()).toBe(25);
+    });
+  });
 
   describe('Show notifications', function () {
     it('should be shown notifications', function () {
