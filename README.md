@@ -1,7 +1,8 @@
 ### Angular Notificaion Service (Foundation 6)
 [![Build Status](https://travis-ci.org/Innovaccer/angular-notificaition-service.svg?branch=master)](https://travis-ci.org/Innovaccer/angular-notificaition-service)
 
-#### [Demo](https://innovaccer.github.io/angular-notificaition-service/)  
+
+#### [Demo](https://innovaccer.github.io/angular-notificaition-service/demo)  
 
 #### [Source Code](https://github.com/Innovaccer/angular-notificaition-service)
 
